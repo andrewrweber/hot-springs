@@ -7,7 +7,7 @@ var Map = {
     $('#map').vectorMap({map: 'us_aea_en'});
     // Event handler for clicking a state:
     $('#map').bind('regionClick.jvectormap', function(event, code) {
-      console.log(code);
+      Search.getStateSprings(code);
     });
   }
 }
