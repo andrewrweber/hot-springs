@@ -2,6 +2,7 @@ get '/' do
   erb :index
 end
 
-post '/search' do
-  
+get '/springs' do
+  @springs = Hotspring.where(code: params[:code])
+  erb :springs, layout: false
 end
