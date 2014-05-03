@@ -4,7 +4,9 @@ def seed_hotsprings
   CSV.foreach("db/hot_springs_list.csv") do |row|
     data = {}
     data[:state] = row.shift
-    data[:location] = generate_location_url(row.shift,row.shift)
+    data[:latitude] = row.shift
+    data[:longitude] = row.shift
+    data[:location] = generate_location_url(data[:latitude],data[:longitude])
     data[:name] = row.shift
     data[:temperature] = row.shift
 
