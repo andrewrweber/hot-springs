@@ -1,4 +1,23 @@
-BANDNAMES = [ "Joy Division", "New Order", "The Smiths", "The Sisters of Mercy", "Wye Oak", "Thao and the Get Down Stay Down",
-          "Siouxsie and the Banshees", "Interpol" ]
+require 'csv'
 
-BANDNAMES.each{ |band_name| Band.create(name: band_name) }
+def seed_hotsprings
+  CSV.foreach("db/hot_springs_list.csv") do |row|
+    data = {}
+    data[:state] = row.shift
+    data[:location] = generate_location_url(row.shift,row.shift)
+    data[:name] = row.shift
+    data[:temperature] = row.shift
+
+    puts "Building hotsprings '#{data[:name]}'..."
+    Hotspring.create(data)
+  end
+end
+
+# Generate google maps embed url based on location
+def generate_location_url(latitude,longitude)
+	location_string = latitude+","+longitude
+    "https://www.google.com/maps/embed/v1/place?key=AIzaSyBSK5Z9EypS20-T9HECcccyplpGUNa0KHE&q=" + location_string
+end
+
+# Let's do it!
+seed_hotsprings

@@ -1,3 +1,3 @@
-class hotspring < ActiveRecord::Base
+class Hotspring < ActiveRecord::Base
 
 end

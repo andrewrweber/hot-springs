@@ -5,7 +5,6 @@ class CreateHotsprings < ActiveRecord::Migration
 	  col.string :location
       col.string :name
       col.string :temperature
-      
     end
   end
 end
